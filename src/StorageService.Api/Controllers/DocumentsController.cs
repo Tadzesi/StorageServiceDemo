@@ -2,6 +2,7 @@
 using StorageService.Api.Interfaces;
 using StorageService.Api.Models;
 using StorageService.Api.Services;
+using StorageService.Api.Storage;
 
 namespace StorageService.Api.Controllers
 {
@@ -14,7 +15,7 @@ namespace StorageService.Api.Controllers
         private readonly ILogger<DocumentsController> _logger;
 
         public DocumentsController(
-            IDocumentStorage storage,
+            [FromKeyedServices(StorageType.InMemory)] IDocumentStorage storage,
             DocumentFormatterFactory formatterFactory,
             ILogger<DocumentsController> logger)
         {

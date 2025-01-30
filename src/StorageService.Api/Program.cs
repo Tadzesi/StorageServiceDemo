@@ -12,7 +12,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddSwaggerGen(); // This line requires the above using directives
 
-builder.Services.AddSingleton<IDocumentStorage, InMemoryDocumentStorage>();
+builder.Services.AddKeyedSingleton<IDocumentStorage, InMemoryDocumentStorage>(StorageType.InMemory);
+builder.Services.AddKeyedScoped<IDocumentStorage, DatabaseDocumentStorage>(StorageType.Database);
 builder.Services.AddSingleton<IDocumentFormatter, JsonDocumentFormatterService>();
 builder.Services.AddSingleton<IDocumentFormatter, XmlDocumentFormatterService>();
 builder.Services.AddSingleton<DocumentFormatterFactory>();
